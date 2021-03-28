@@ -1,0 +1,31 @@
+#!/usr/bin/env groovy
+
+pipelineJob('urlshorten') {
+    displayName('Kubernetes URL Shortn Job')
+
+    logRotator {
+        numToKeep(10)
+        daysToKeep(30)
+    }
+
+    configure { project ->
+        project / 'properties' / 'org.jenkinsci.plugins.workflow.job.properties.DurabilityHintJobProperty' {
+            hint('PERFORMANCE_OPTIMIZED')
+        }
+    }
+
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/timpeihunghsieh/url-shorten.git')
+                        credentials('jenkins-operator')
+                    }
+                    branches('*/master')
+                }
+            }
+            scriptPath('deployments/jenkins/configs/pipelines/url-shorten-pipeline.jenkins')
+        }
+    }
+}
