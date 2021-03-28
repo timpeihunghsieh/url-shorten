@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 pipelineJob('urlshorten') {
-    displayName('Kubernetes URL Shortn Job')
+    displayName('Kubernetes URL Shorten Job')
 
     logRotator {
         numToKeep(10)
