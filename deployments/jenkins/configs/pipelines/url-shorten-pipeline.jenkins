@@ -7,13 +7,13 @@ def workdir = "${workspace}/src/github.com/jenkinsci/kubernetes-operator/"
 
 podTemplate(label: label,
         containers: [
-                containerTemplate(name: 'bazel', image: 'http://gcr.io/cloud-marketplace-containers/google/bazel:3.5.0', ttyEnabled: true, command: 'cat'),
+                containerTemplate(name: 'bazel', image: 'insready/bazel', ttyEnabled: true, command: 'cat'),
         ],
         ) {
     node(label) {
         stage('Run shell') {
             container('bazel') {
-                sh 'bazel version"'
+                sh 'echo "bazel version"'
             }
         }
     }
