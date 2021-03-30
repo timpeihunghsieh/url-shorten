@@ -23,3 +23,12 @@ java_library(
         "@main_mavin//:io_prometheus_simpleclient_servlet",
     ],
 )
+
+java_image(
+    name = "url-shorten-server-img",
+    # base = "@ubuntu//image",  # This is optional. It makes it easier to debug,
+    main_class = "com.url_shorten_app.url_shorten.UrlShortenServer",
+    runtime_deps = [
+        ":url-shorten-lib",
+    ],
+)
