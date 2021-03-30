@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: url-shorten
+    env: production
+  name: url-shorten-production
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: url-shorten
+      env: production
+  template:
+    metadata:
+      labels:
+        run: url-shorten
+        env: production
+    spec:
+      containers:
+        - image: url-shorten-production:latest
+          name: url-shorten-production
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 0
