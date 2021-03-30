@@ -1,0 +1,116 @@
+workspace(name = "tim")
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository", "new_git_repository")
+
+# Check out how external dependencies work.
+# https://docs.bazel.build/versions/master/external.html
+
+################################# Proto ##################################
+http_archive(
+    name = "rules_proto_grpc",
+    sha256 = "fa7a59e0d1527ac69be652407b457ba1cb40700752a3ee6cc2dd25d9cb28bb1a",
+    strip_prefix = "rules_proto_grpc-3.1.0",
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/3.1.0.tar.gz"],
+)
+
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
+rules_proto_grpc_toolchains()
+rules_proto_grpc_repos()
+
+load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+rules_proto_dependencies()
+rules_proto_toolchains()
+
+################################# Java ###################################
+
+load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos = "java_repos")
+
+rules_proto_grpc_java_repos()
+
+load("@rules_jvm_external//:defs.bzl", "maven_install")
+load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_ARTIFACTS", "IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS", "grpc_java_repositories")
+
+maven_install(
+    artifacts = IO_GRPC_GRPC_JAVA_ARTIFACTS,
+    generate_compat_repositories = True,
+    override_targets = IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS,
+    repositories = [
+        "https://repo.maven.apache.org/maven2/",
+    ],
+)
+
+load("@maven//:compat.bzl", "compat_repositories")
+
+compat_repositories()
+
+grpc_java_repositories()
+
+################################# Maven #################################
+
+maven_install(
+    name = "main_mavin",
+    artifacts = [
+        "junit:junit:4.12",
+        "androidx.test.espresso:espresso-core:3.1.1",
+        "org.hamcrest:hamcrest-library:1.3",
+        "org.eclipse.jetty:jetty-server:9.2.11.v20150529",
+        "org.eclipse.jetty:jetty-servlet:9.2.11.v20150529",
+        "org.eclipse.jetty:jetty-util:9.2.11.v20150529",
+        "javax.servlet:javax.servlet-api:3.1.0",
+        "com.google.inject:guice:4.2.2",
+        "redis.clients:jedis:3.0.1",
+        "io.prometheus:simpleclient:0.6.0",
+        "io.prometheus:simpleclient_servlet:0.6.0",
+        "junit:junit:4.12",
+        "javax.servlet:javax.servlet-api:3.1.0",
+        "org.mockito:mockito-all:1.10.19",
+        "org.slf4j:slf4j-api:1.7.5",
+        "org.springframework:spring-test:5.0.12.RELEASE",
+        "org.nanohttpd:nanohttpd:2.3.1",
+    ],
+    repositories = [
+        # Private repositories are supported through HTTP Basic auth
+        # "http://username:password@localhost:8081/artifactory/my-repository",
+        "https://maven.google.com",
+        "https://repo1.maven.org/maven2",
+    ],
+)
+
+################################# Docker #################################
+
+http_archive(
+    name = "io_bazel_rules_docker",
+    sha256 = "1698624e878b0607052ae6131aa216d45ebb63871ec497f26c67455b34119c80",
+    strip_prefix = "rules_docker-0.15.0",
+    urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.15.0/rules_docker-v0.15.0.tar.gz"],
+)
+
+load(
+    "@io_bazel_rules_docker//repositories:repositories.bzl",
+    container_repositories = "repositories",
+)
+container_repositories()
+
+load("@io_bazel_rules_docker//repositories:deps.bzl", container_deps = "deps")
+container_deps()
+
+load(
+    "@io_bazel_rules_docker//container:container.bzl",
+    "container_pull",
+)
+container_pull(
+  name = "java_base",
+  registry = "gcr.io",
+  repository = "distroless/java",
+  # 'tag' is also supported, but digest is encouraged for reproducibility.
+  digest = "sha256:deadbeef",
+)
+
+# Java Image
+load(
+    "@io_bazel_rules_docker//java:image.bzl",
+    _java_image_repos = "repositories",
+)
+
+_java_image_repos()
