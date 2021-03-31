@@ -11,21 +11,23 @@ podTemplate(label: label,
         ],
         ) {
     node(label) {
-        stage('Run shell') {
-            container('bazel') {
-                sh 'pwd'
-                sh 'ls -a'
-                sh 'cd ~'
-            }
-        }
-        stage('Pause') {
-            input {
-                message "stop"
-                ok "Yes go ahead"
-            }
-            steps {
+        stages {
+            stage('Run shell') {
                 container('bazel') {
                     sh 'pwd'
+                    sh 'ls -a'
+                    sh 'cd ~'
+                }
+            }
+            stage('Pause') {
+                input {
+                    message "stop"
+                    ok "Yes go ahead"
+                }
+                steps {
+                    container('bazel') {
+                        sh 'pwd'
+                    }
                 }
             }
         }
