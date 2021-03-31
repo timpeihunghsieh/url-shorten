@@ -13,6 +13,8 @@ podTemplate(label: label,
     node(label) {
         stage('Run shell') {
             container('bazel') {
+                sh 'pwd'
+                sh 'ls -a'
                 sh 'bazel run //deployments/url-shorten/minikube:k8-all.apply'
             }
         }
