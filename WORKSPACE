@@ -136,5 +136,5 @@ load("@io_bazel_rules_k8s//k8s:k8s.bzl", "k8s_defaults")
 k8s_defaults(
     name = "local_k8",
     cluster = "minikube",
-    image_chroot = "10.96.0.1:443",
+    image_chroot = "localhost:5000",
 )
