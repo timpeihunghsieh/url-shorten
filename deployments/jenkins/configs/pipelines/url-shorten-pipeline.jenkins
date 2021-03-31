@@ -16,6 +16,7 @@ podTemplate(label: label,
                 sh 'git clone https://github.com/timpeihunghsieh/url-shorten.git .'
                 sh 'ls'
                 sh 'cat WORKSPACE'
+                sh 'sleep 3600'
                 sh 'bazel run //deployments/url-shorten/minikube:k8-all.apply'
             }
         }
