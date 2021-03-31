@@ -13,10 +13,8 @@ podTemplate(label: label,
     node(label) {
         stage('Run shell') {
             container('bazel') {
-                sh 'pwd'
-                sh 'ls -a'
-                sh 'cd ~'
-                sh 'sleep 1800'
+                sh 'git clone https://github.com/timpeihunghsieh/url-shorten.git'
+                sh 'cd url-shorten'
                 sh 'bazel run //deployments/url-shorten/minikube:k8-all.apply'
             }
         }
