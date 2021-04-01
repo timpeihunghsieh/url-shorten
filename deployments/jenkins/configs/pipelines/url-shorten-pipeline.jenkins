@@ -9,7 +9,7 @@ podTemplate(label: label,
         containers: [
                 containerTemplate(name: 'bazel', image: 'kernald/bazel:4.0.0', ttyEnabled: true, command: 'cat'),
         ],
-        serviceAccount: 'jenkins-operator-jenkins-op'
+        serviceAccount: 'jenkins-operator'
         ) {
     node(label) {
         stage('Run shell') {
