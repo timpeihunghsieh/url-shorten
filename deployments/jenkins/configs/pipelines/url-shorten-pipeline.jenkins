@@ -16,8 +16,8 @@ podTemplate(label: label,
             container('bazel') {
                 sh 'curl https://storage.googleapis.com/kubernetes-release/release/v1.18.16/bin/linux/amd64/kubectl --output /usr/local/bin/kubectl && chmod +x /usr/local/bin/kubectl'
                 sh 'git clone https://github.com/timpeihunghsieh/url-shorten.git .'
-                sh 'chmod +x deployments/jenkins/configs/bazel-config-setup.sh'
-                sh './bazel-config-setup.sh'
+                sh 'chmod +x deployments/jenkins/configs/bazel_setup.sh'
+                sh './bazel_setup.sh'
                 sh 'sleep 3600'
                 sh 'bazel run //deployments/url-shorten/minikube:k8-all.apply'
             }
