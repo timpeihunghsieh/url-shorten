@@ -68,7 +68,7 @@ public class UrlShortenServlet extends HttpServlet {
 
   private void ReplyWithUsage(HttpServletResponse resp)
       throws IOException {
-    String bodyText = "Usage: short_url=[short]&long_url=[long] test change 8";
+    String bodyText = "Usage: short_url=[short]&long_url=[long] test change 9";
     resp.setStatus(200);
     resp.getWriter().println(bodyText);
     requests_default.inc();
