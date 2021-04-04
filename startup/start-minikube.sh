@@ -35,6 +35,7 @@ if ! minikube addons enable ingress ; then
     exit 1
 fi
 
+echo "Setting up /etc/hosts. May ask for password..."
 sudo -- sh -c "cp /etc/hosts /tmp/hosts.backup"
 sudo -- sh -c "cat /tmp/hosts.backup | grep -v tim.hsieh > /etc/hosts"
 sudo -- sh -c "echo '# Bazel entries for tim.hsieh' >> /etc/hosts"
