@@ -9,13 +9,13 @@ The key components includes:
 - **JUnit** as the unit test framework.
 - **Mockito** (from Spring) as the mocking framework.
 - Prometheus Stack
-  -- **Prometheus** as the time series database to store metrics.
-  -- **Grafana** as the metrics dashboard.
-  -- **Alertmanager** stores and manages alert.
+    - **Prometheus** as the time series database to store metrics.
+    - **Grafana** as the metrics dashboard. 
+    - **Alertmanager** stores and manages alert.
 - EFK Stack
-  -- **ElasticSearch** to store logs.
-  -- **FileBeat** to gather logs.
-  -- **Kibana** to query and logs.
+    - **ElasticSearch** to store logs.
+    - **FileBeat** to gather logs.
+    - **Kibana** to query and logs.
  - **Kubernetes** as the container management platform.
  - **GCP** as the cloud provider.
  -  **OpenVPN** as the gateway.
