@@ -21,6 +21,8 @@ java_library(
         "@main_mavin//:redis_clients_jedis",
         "@main_mavin//:io_prometheus_simpleclient",
         "@main_mavin//:io_prometheus_simpleclient_servlet",
+        "@main_mavin//:org_slf4j_slf4j_api",
+        "@main_mavin//:org_slf4j_slf4j_simple",
     ],
 )
 
