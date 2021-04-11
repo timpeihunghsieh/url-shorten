@@ -6,7 +6,6 @@ metadata:
   name: url-shorten
   namespace: default
 spec:
-  externalTrafficPolicy: Local
   ports:
     - name: http
       port: 80

@@ -9,3 +9,5 @@ sleep 5  # TODO(timhsieh): hack to wait for CRD to be deployed.
 kubectl apply -f deployments/elk-stack/filebeat_autodiscover.yaml
 
 bazel run deployments/url-shorten/simulation:k8-all.apply
+kubectl apply -f deployments/ingress/internal-services-ingress.yaml
+kubectl apply -f deployments/ingress/external-services-ingress.yaml
