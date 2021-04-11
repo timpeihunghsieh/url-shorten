@@ -64,10 +64,16 @@ local_k8(
     template = "//deployments/url-shorten/url-shorten:deployment-canary.yaml",
 )
 
+local_k8(
+    name = "url-shorten-service-monitor",
+    template = "//deployments/url-shorten/url-shorten:service-monitor.yaml",
+)
+
 k8s_objects(
     name = "url-shorten",
     objects = [
         ":url-shorten-service",
+        ":url-shorten-service-monitor",
         ":url-shorten-deployment-production",
         ":url-shorten-deployment-canary",
     ],

@@ -5,4 +5,5 @@ exports_files([
     "deployment-canary.yaml",
     "service.yaml",
     "ingress.yaml",
+    "service-monitor.yaml",
 ])
