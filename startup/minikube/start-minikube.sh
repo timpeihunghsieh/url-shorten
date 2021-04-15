@@ -19,8 +19,8 @@ echo "Starting Minikube..."
 minikube start \
     --kubernetes-version=v1.18.0 \
     --vm-driver=virtualbox \
-    --cpus=4 \
-    --memory=4096 \
+    --cpus=6 \
+    --memory=8192 \
     --disk-size=10g
 
 minikube_ip=$(minikube ip)
