@@ -22,25 +22,6 @@ k8s_objects(
     ],
 )
 
-# Redis Slave
-local_k8(
-    name = "redis-slave-service",
-    template = "//deployments/url-shorten/redis-slave:service.yaml",
-)
-
-local_k8(
-    name = "redis-slave-deployment",
-    template = "//deployments/url-shorten/redis-slave:deployment.yaml",
-)
-
-k8s_objects(
-    name = "redis-slave",
-    objects = [
-        ":redis-slave-service",
-        ":redis-slave-deployment",
-    ],
-)
-
 # url-shorten
 
 local_k8(
@@ -75,7 +56,6 @@ k8s_objects(
 k8s_objects(
     name = "k8-all",
     objects = [
-        ":redis-slave",
         ":redis-master",
         ":url-shorten",
     ],
