@@ -57,14 +57,6 @@ simulation_k8(
 )
 
 simulation_k8(
-    name = "url-shorten-deployment-canary",
-    images = {
-        "url-shorten-canary:latest": "//java/com/url-shorten-app/url-shorten:url-shorten-server-img",
-    },
-    template = "//deployments/url-shorten/url-shorten:deployment-canary.yaml",
-)
-
-simulation_k8(
     name = "url-shorten-service-monitor",
     template = "//deployments/url-shorten/url-shorten:service-monitor.yaml",
 )
@@ -75,7 +67,6 @@ k8s_objects(
         ":url-shorten-service",
         ":url-shorten-service-monitor",
         ":url-shorten-deployment-production",
-        ":url-shorten-deployment-canary",
     ],
 )
 

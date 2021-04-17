@@ -3,19 +3,16 @@ kind: Deployment
 metadata:
   labels:
     run: url-shorten
-    env: production
   name: url-shorten-production
 spec:
   replicas: 3
   selector:
     matchLabels:
       run: url-shorten
-      env: production
   template:
     metadata:
       labels:
         run: url-shorten
-        env: production
     spec:
       containers:
         - image: url-shorten-production:latest
