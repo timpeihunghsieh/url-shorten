@@ -14,5 +14,5 @@
 bazel run deployments/url-shorten/minikube:k8-all.apply
 
 # Ingress rules
-kubectl apply -f deployments/ingress/internal-services-ingress.yaml
-kubectl apply -f deployments/ingress/external-services-ingress.yaml
+#kubectl apply -f deployments/ingress/internal-services-ingress.yaml
+#kubectl apply -f deployments/ingress/external-services-ingress.yaml
