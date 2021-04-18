@@ -46,7 +46,8 @@ k8s_objects(
     name = "url-shorten",
     objects = [
         ":url-shorten-service",
-        ":url-shorten-service-monitor",
+        # TODO(timhsieh): re-enable when prometheus is loaded
+        #":url-shorten-service-monitor",
         ":url-shorten-deployment-production",
     ],
 )

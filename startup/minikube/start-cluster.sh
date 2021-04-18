@@ -5,12 +5,10 @@
 # TODO(timhsieh): configure this so that they can be configured together.
 
 # Prometheus stack
-./deployments/prometheus-stack/startup.sh
+#./deployments/prometheus-stack/startup.sh
 
 # ELK
-#kubectl apply -f https://download.elastic.co/downloads/eck/1.5.0/all-in-one.yaml
-#sleep 5  # TODO(timhsieh): hack to wait for CRD to be deployed. 
-#kubectl apply -f deployments/elk-stack/filebeat_autodiscover.yaml
+./deployments/elk-stack/startup.sh
 
 # URL shorten
 bazel run deployments/url-shorten/minikube:k8-all.apply
