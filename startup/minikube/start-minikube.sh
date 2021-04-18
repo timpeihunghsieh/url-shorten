@@ -15,6 +15,12 @@ if  ! which helm &>/dev/null ; then
     exit 1
 fi
 
+if  ! which istioctl &>/dev/null ; then
+    echo "Please install istioctl (>1.9.1)"
+    exit 1
+fi
+
+
 echo "Starting Minikube..."
 minikube start \
     --kubernetes-version=v1.18.0 \

@@ -2,17 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: url-shorten
+    app: url-shorten
+    version: v1
   name: url-shorten-production
 spec:
   replicas: 3
   selector:
     matchLabels:
-      run: url-shorten
+      app: url-shorten
+      version: v1
   template:
     metadata:
       labels:
-        run: url-shorten
+        app: url-shorten
+        version: v1
     spec:
       containers:
         - image: url-shorten-production:latest

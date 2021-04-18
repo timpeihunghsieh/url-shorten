@@ -1,18 +1,17 @@
 #!/usr/bin/env bash
 
+# Istio Gateway
+./deployments/istio/startup.sh
+
 # Note! As of April 2021, ELK and Prometheus stack can't be started together
 # in Minikube due to lack of resources.
 # TODO(timhsieh): configure this so that they can be configured together.
 
 # Prometheus stack
-#./deployments/prometheus-stack/startup.sh
+./deployments/prometheus-stack/startup.sh
 
 # ELK
-./deployments/elk-stack/startup.sh
+# ./deployments/elk-stack/startup.sh
 
 # URL shorten
 bazel run deployments/url-shorten/minikube:k8-all.apply
-
-# Ingress rules
-#kubectl apply -f deployments/ingress/internal-services-ingress.yaml
-#kubectl apply -f deployments/ingress/external-services-ingress.yaml
