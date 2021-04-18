@@ -1,4 +1,9 @@
 namespaceOverride: "metrics-monitoring"
+prometheus:
+  prometheusSpec:
+    serviceMonitorNamespaceSelector:
+      matchLabels:
+        metrics-monitoring: target
 grafana:
   namespaceOverride: "metrics-monitoring"
 kube-state-metrics:  

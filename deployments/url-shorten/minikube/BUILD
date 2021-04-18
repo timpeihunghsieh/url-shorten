@@ -46,7 +46,7 @@ k8s_objects(
     name = "url-shorten",
     objects = [
         ":url-shorten-service",
-        # TODO(timhsieh): add back url-shorten-service-monitor 
+        ":url-shorten-service-monitor",
         ":url-shorten-deployment-production",
     ],
 )
