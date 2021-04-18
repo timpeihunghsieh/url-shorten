@@ -1,0 +1,7 @@
+namespaceOverride: "metrics-monitoring"
+grafana:
+  namespaceOverride: "metrics-monitoring"
+kube-state-metrics:  
+  namespaceOverride: "metrics-monitoring"
+prometheus-node-exporter:
+  namespaceOverride: "metrics-monitoring"

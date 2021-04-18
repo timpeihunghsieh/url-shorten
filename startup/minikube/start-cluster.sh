@@ -5,7 +5,7 @@
 # TODO(timhsieh): configure this so that they can be configured together.
 
 # Prometheus stack
-# helm install prometheus prometheus-community/kube-prometheus-stack --version "14.0.0"
+./deployments/prometheus-stack/startup.sh
 
 # ELK
 #kubectl apply -f https://download.elastic.co/downloads/eck/1.5.0/all-in-one.yaml
