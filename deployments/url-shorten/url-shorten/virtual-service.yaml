@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: url-shorten-virtual-service
+spec:
+  hosts:
+  - urlshorten.tim.hsieh
+  gateways:
+  - url-shorten-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: url-shorten.default.svc.cluster.local
+        port:
+          number: 80

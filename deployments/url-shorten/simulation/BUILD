@@ -42,11 +42,17 @@ simulation_k8(
     template = "//deployments/url-shorten/url-shorten:service-monitor.yaml",
 )
 
+simulation_k8(
+    name = "url-shorten-virtual-service",
+    template = "//deployments/url-shorten/url-shorten:virtual-service.yaml",
+)
+
 k8s_objects(
     name = "url-shorten",
     objects = [
         ":url-shorten-service",
         ":url-shorten-service-monitor",
+        ":url-shorten-virtual-service",
         ":url-shorten-deployment-production",
     ],
 )

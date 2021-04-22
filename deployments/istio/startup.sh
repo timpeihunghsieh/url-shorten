@@ -9,6 +9,8 @@ kubectl apply -f deployments/istio/addons
 
 # Istio Gateway
 kubectl apply -f deployments/istio/gateway.yaml
+kubectl apply -f deployments/istio/virtual-service.yaml
+
 INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
 SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
 INGRESS_HOST=$(minikube ip)

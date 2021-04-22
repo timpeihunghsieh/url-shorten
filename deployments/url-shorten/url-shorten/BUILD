@@ -5,4 +5,5 @@ exports_files([
     "service.yaml",
     "ingress.yaml",
     "service-monitor.yaml",
+    "virtual-service.yaml",
 ])
